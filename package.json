@@ -10,16 +10,16 @@
     "apps/akkuea-land"
   ],
   "scripts": {
-    "dev": "concurrently \"bun run dev:webapp\" \"bun run dev:api\" \"bun run dev:land\"",
-    "dev:webapp": "cd apps/webapp && bun run dev",
-    "dev:api": "cd apps/api && bun run dev",
-    "dev:land": "cd apps/akkuea-land && bun run dev",
-    "build": "concurrently \"bun run build:api\" \"bun run build:webapp\" \"bun run build:shared\" \"bun run build:land\"",
-    "build:webapp": "cd apps/webapp && bun run build",
-    "build:api": "cd apps/api && bun run build",
-    "build:shared": "cd apps/shared && bun run build",
-    "build:land": "cd apps/akkuea-land && bun run build",
-    "build:contracts": "./scripts/build.sh",
+    "dev": "node init && concurrently \"bun run dev:webapp\" \"bun run dev:api\" \"bun run dev:land\"",
+    "dev:webapp": "node init && cd apps/webapp && bun run dev",
+    "dev:api": "node init && cd apps/api && bun run dev",
+    "dev:land": "node init && cd apps/akkuea-land && bun run dev",
+    "build": "node init && concurrently \"bun run build:api\" \"bun run build:webapp\" \"bun run build:shared\" \"bun run build:land\"",
+    "build:webapp": "node init && cd apps/webapp && bun run build",
+    "build:api": "node init && cd apps/api && bun run build",
+    "build:shared": "node init && cd apps/shared && bun run build",
+    "build:land": "node init && cd apps/akkuea-land && bun run build",
+    "build:contracts": "node init && ./scripts/build.sh",
     "test": "bun test --workspaces",
     "lint": "concurrently \"cd apps/api && bun run lint\" \"cd apps/webapp && bun run lint\" \"cd apps/shared && bun run lint\" \"cd apps/akkuea-land && bun run lint\"",
     "typecheck": "concurrently \"cd apps/api && bun run type-check\" \"cd apps/webapp && bun run type-check\" \"cd apps/shared && bun run type-check\" \"cd apps/akkuea-land && bun run type-check\"",
@@ -31,27 +31,27 @@
     "smoke": "./scripts/smoke/run-smoke-tests.sh",
     "smoke:pilot": "cd apps/api && bun test tests/e2e/pilot-lifecycle.e2e.ts",
     "storybook": "cd apps/webapp && bun run storybook",
-    "build-storybook": "cd apps/webapp && bun run build-storybook"
+    "build-storybook": "node init && cd apps/webapp && bun run build-storybook"
   },
   "devDependencies": {
-    "@types/node": "^25.9.5",
-    "concurrently": "^9.2.4",
-    "jsdom": "^29.1.1",
+    "@types/node": "^26.5.0",
+    "concurrently": "^10.0.5",
+    "jsdom": "^30.0.1",
     "prettier": "^3.9.6",
-    "typescript": "^5.9.3"
+    "typescript": "^7.0.2"
   },
   "dependencies": {
     "@creit.tech/stellar-wallets-kit": "^2.6.0",
     "@hookform/resolvers": "^5.9.1",
-    "@testing-library/jest-dom": "^6.10.0",
-    "@testing-library/react": "^16.3.2",
-    "@testing-library/user-event": "^14.6.4",
+    "@testing-library/jest-dom": "^7.0.1",
+    "@testing-library/react": "^16.3.3",
+    "@testing-library/user-event": "^14.6.7",
     "@types/jest": "^30.0.0",
-    "@typescript-eslint/eslint-plugin": "^8.67.0",
-    "@typescript-eslint/parser": "^8.67.0",
-    "eslint": "^9.39.5",
-    "jest": "^30.4.2",
-    "react-hook-form": "^7.85.0",
+    "@typescript-eslint/eslint-plugin": "^8.70.0",
+    "@typescript-eslint/parser": "^8.70.0",
+    "eslint": "^10.10.0",
+    "jest": "^30.5.1",
+    "react-hook-form": "^7.87.0",
     "@stellar/stellar-sdk": "^17.0.1"
   },
   "engines": {
@@ -66,6 +66,8 @@
     "minimatch": ">=10.2.1",
     "eslint-visitor-keys": "^5.0.1",
     "browserslist": "^4.28.8",
-    "next": "16.2.11"
+    "next": "^16.3.3",
+    "js-yaml": "^4.3.2",
+    "sharp": "^0.35.4"
   }
 }
